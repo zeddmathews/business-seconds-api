@@ -1,9 +1,29 @@
 services:
   web:
-  build: .
-  ports:
-    - "5000:5000"
-  volumes:
-    - ./app:/app
-  environment:
-    - FLASK_ENV=development
+    build: .
+    container_name: recomed_api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres:17
+    container_name: recomed_db
+    restart: always
+    environment:
+      POSTGRES_DB: recomed
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "1234"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./app/db/docker:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres_data:
