@@ -24,6 +24,16 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./app/db/docker:/docker-entrypoint-initdb.d
+  
+  seed:
+    build: .
+    depends_on:
+      - db
+    entrypoint: ["python", "app/scripts/seed_holidays.py"]
+    volumes:
+      - .:/app
+    env_file:
+      - .env
 
 volumes:
   postgres_data:

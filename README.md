@@ -2,6 +2,23 @@
 An API endpoint to calculate the total number of business seconds between two given times.  
 
 ## Usage
+**Completely fresh start by cleaning volumes, rebuilding, starting fresh containers, seeding, and setting execute permissions**
+- chmod +x 01-clean_start.sh
+- ./01-clean_start.sh
+
+**Pausing containers and volumes**
+- chmod +x 02-stop.sh
+- ./02-stop.sh
+
+**Starts db and web containers, runs seed**
+- chmod +x 03-run.sh
+- ./03-run.sh
+
+**Clean down all containers and volumes**
+- chmod +x 04-cleanup.sh
+- ./04-cleanup.sh
+
+**Endpoint testing - automated testing to be added**
 - http://localhost:8000/business_seconds?start_time=2025-07-22T08:00:00&end_time=2025-07-22T12:00:00
 
 ## Requirements
