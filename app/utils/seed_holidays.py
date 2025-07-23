@@ -1,9 +1,9 @@
 from datetime import date
 import asyncio
 import asyncpg
-from app.scripts.holiday_utils import seed_public_holidays
+from app.utils.holiday_utils import seed_public_holidays
+from app.config import DB_URL
 
-DB_URL = "postgresql://postgres:1234@db:5432/recomed"
 
 async def run_seed():
     conn = await asyncpg.connect(DB_URL)

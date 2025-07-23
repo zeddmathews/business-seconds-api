@@ -64,3 +64,10 @@ async def seed_public_holidays(conn: asyncpg.Connection, year_start: int, years:
 
         await insert_holiday(good_friday, get_observed_date(good_friday), "Good Friday")
         await insert_holiday(family_day, get_observed_date(family_day), "Family Day")
+
+async def is_public_holiday(conn: asyncpg.Connection, input_date: date) -> bool:
+    row = await conn.fetchrow(
+        "SELECT 1 FROM public_holidays WHERE holi_date = $1 OR observed_date = $1",
+        input_date
+    )
+    return row is not None

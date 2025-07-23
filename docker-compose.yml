@@ -29,7 +29,7 @@ services:
     build: .
     depends_on:
       - db
-    entrypoint: ["python", "app/scripts/seed_holidays.py"]
+    entrypoint: ["python", "app/utils/seed_holidays.py"]
     volumes:
       - .:/app
     env_file:

@@ -7,7 +7,7 @@ until pg_isready -h db -p 5432 -U "$POSTGRES_USER"; do
 done
 
 echo "✅ PostgreSQL is ready. Running holiday seed script..."
-python app/scripts/seed_holidays.py
+python app/utils/seed_holidays.py
 
-echo "🚀 Starting Gunicorn server..."
-exec gunicorn --bind 0.0.0.0:8000 app.main:app --reload
+echo "🚀 Starting Uvicorn server..."
+exec uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
