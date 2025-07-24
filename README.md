@@ -1,22 +1,41 @@
 # recomed-backend-python-assessment
-An API endpoint to calculate the total number of business seconds between two given times.  
+An API endpoint to calculate the total number of business seconds between two given times.
+
+## Setup
+ - Requires Docker to be installed and started.
+ - .env file with the following variables:
+    - `FLASK_ENV=development`
+    - `POSTGRES_DB=recomed`
+    - `POSTGRES_USER=postgres (default user, update in prd)`
+    - `POSTGRES_PASSWORD=e.g.1111`
+    - `POSTGRES_HOST=`
+    - `POSTGRES_PORT=5432 (default postgres port)`
+    - `DB_URL=postgresql://{$POSTGRES_USER}:{$POSTGRES_PASSWORD}@db:{$POSTGRES_PORT}/{$POSTGRES_DB}`
 
 ## Usage
-**Completely fresh start by cleaning volumes, rebuilding, starting fresh containers, seeding, and setting execute permissions**
-- chmod +x 01-clean_start.sh
-- ./01-clean_start.sh
+### **Completely fresh start by cleaning volumes, rebuilding, starting fresh containers, seeding, and setting execute permissions. Starts in background**
+- `chmod +x 01-clean_start.sh`
+- `./01-clean_start.sh`
 
-**Pausing containers and volumes**
-- chmod +x 02-stop.sh
-- ./02-stop.sh
+### **Pausing containers and volumes**
+- `chmod +x 02-stop.sh`
+- `./02-stop.sh`
 
-**Starts db and web containers, runs seed**
-- chmod +x 03-run.sh
-- ./03-run.sh
+### **Starts db and web containers, runs seed**
+- `chmod +x 03-run.sh`
+- `./03-run.sh`
 
-**Clean down all containers and volumes**
-- chmod +x 04-cleanup.sh
-- ./04-cleanup.sh
+### **Clean down all containers and volumes**
+- `chmod +x 04-cleanup.sh`
+- `./04-cleanup.sh`
+
+### **Testing**
+Uses test service in docker-compose.yml to execute pytest
+*Requires containers to be built first*
+- **Verbose**
+    - `docker compose run --rm test`
+- **Limited logs - quick verification**
+- `docker compose run --rm test_short`
 
 **Endpoint testing - automated testing to be added**
 - http://localhost:8000/business_seconds?start_time=2025-07-22T08:00:00&end_time=2025-07-22T12:00:00

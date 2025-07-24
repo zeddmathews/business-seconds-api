@@ -15,10 +15,8 @@ services:
     image: postgres:17
     container_name: recomed_db
     restart: always
-    environment:
-      POSTGRES_DB: recomed
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: "1234"
+    env_file:
+      - .env
     ports:
       - "5432:5432"
     volumes:
@@ -34,6 +32,26 @@ services:
       - .:/app
     env_file:
       - .env
+
+  test_short:
+    build: .
+    command: ["pytest", "tests/", "--disable-warnings", "--tb-short"]
+    depends_on:
+      - db
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+
+  test:
+    build: .
+    command: ["pytest", "tests/", "-v", "--disable-warnings"]
+    depends_on:
+      - db
+    env_file:
+      - .env
+    volumes:
+      - .:/app
 
 volumes:
   postgres_data:
