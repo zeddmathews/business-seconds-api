@@ -9,5 +9,5 @@ done
 echo "✅ PostgreSQL is ready. Running holiday seed script..."
 python app/utils/seed_holidays.py
 
-echo "🚀 Starting Uvicorn server..."
+echo "🚀 Starting Hypercorn server..."
 exec hypercorn app.main:app --bind 0.0.0.0:8000 --reload
