@@ -10,4 +10,4 @@ echo "✅ PostgreSQL is ready. Running holiday seed script..."
 python app/utils/seed_holidays.py
 
 echo "🚀 Starting Uvicorn server..."
-exec uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+exec hypercorn app.main:app --bind 0.0.0.0:8000 --reload
