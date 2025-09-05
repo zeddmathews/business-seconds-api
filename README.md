@@ -1,4 +1,4 @@
-# recomed-backend-python-assessment
+# Business Seconds API
 An API endpoint to calculate the total number of business seconds between two given times.
 
 ## Setup
